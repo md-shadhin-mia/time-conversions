@@ -53,6 +53,26 @@ public class HoursUtils {
         return String.format("%02d.%02d", totalHours, totalMinutes);
     }
 
-    // A method that takes an hour and a number as arguments and returns their product
+    public static String multiplyHour(double hour, double number) {
+        checkHourFormat(hour);
+// Format the hour to two decimal places
+        String format = String.format("%.2f", hour);
 
+// Split the hour into hours and minutes
+        String[] parts = format.split("\\.");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+// Calculate the total minutes
+        int totalMinutes = (hours * 60) + minutes;
+
+// Multiply the total minutes
+        int resultMinutes = (int) (totalMinutes * number);
+
+// Calculate the new hours and minutes
+        int newHours = resultMinutes / 60;
+        int newMinutes = resultMinutes % 60;
+
+// Format and return the result
+        return String.format("%02d.%02d", newHours, newMinutes);
+    }
 }

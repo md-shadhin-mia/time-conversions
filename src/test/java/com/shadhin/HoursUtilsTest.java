@@ -51,4 +51,51 @@ public class HoursUtilsTest {
     }
 
 
+    // A test case for multiplyHour method with valid input
+    @Test
+    public void testMultiplyHourValid() {
+        double hour = 1.30;
+        double number = 2.5;
+        String expected = "03.45";
+        String actual = HoursUtils.multiplyHour(hour, number);
+        assertEquals(expected, actual);
+    }
+
+    // A test case for multiplyHour method with zero input
+    @Test
+    public void testMultiplyHourZero() {
+        double hour = 1.30;
+        double number = 0;
+        String expected = "00.00";
+        String actual = HoursUtils.multiplyHour(hour, number);
+        assertEquals(expected, actual);
+    }
+
+    // A test case for multiplyHour method with negative input
+    @Test
+    public void testMultiplyHourNegative() {
+        double hour = -1.30;
+        double number = 2.5;
+        assertThrows(NumberFormatException.class,()->HoursUtils.multiplyHour(hour, number)); // This should throw an exception
+    }
+
+    // A test case for multiplyHour method with invalid input
+    @Test
+    public void testMultiplyHourInvalid() {
+        double hour = 1.99; // This is not a valid hour format
+        double number = 2.5;
+        assertThrows(NumberFormatException.class, ()->HoursUtils.multiplyHour(hour, number)); // This should throw an exception
+    }
+
+    // A test case for multiplyHour method with large input
+    @Test
+    public void testMultiplyHourLarge() {
+        double hour = 12.30;
+        double number = 10;
+        String expected = "125.00";
+        String actual = HoursUtils.multiplyHour(hour, number);
+        assertEquals(expected, actual);
+    }
+
+
 }

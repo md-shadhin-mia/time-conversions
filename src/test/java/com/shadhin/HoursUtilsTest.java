@@ -97,5 +97,45 @@ public class HoursUtilsTest {
         assertEquals(expected, actual);
     }
 
+    // A test case for flattenHours method with valid input
+    @Test
+    public void testFlattenHoursValid() {
+        double hours = 1.30;
+        double expected = 1.5;
+        double actual = HoursUtils.flattenHours(hours);
+        assertEquals(expected, actual, 0.01); // The third argument is the delta for floating point comparison
+    }
+
+    // A test case for flattenHours method with zero input
+    @Test
+    public void testFlattenHoursZero() {
+        double hours = 0;
+        double expected = 0;
+        double actual = HoursUtils.flattenHours(hours);
+        assertEquals(expected, actual, 0.01); // The third argument is the delta for floating point comparison
+    }
+
+    // A test case for flattenHours method with negative input
+    @Test
+    public void testFlattenHoursNegative() {
+        double hours = -1.30;
+        assertThrows(NumberFormatException.class, ()->HoursUtils.flattenHours(hours));
+    }
+
+    // A test case for flattenHours method with invalid input
+    @Test
+    public void testFlattenHoursInvalid() {
+        double hours = 1.99; // This is not a valid hour format
+        assertThrows(NumberFormatException.class, ()->HoursUtils.flattenHours(hours));
+    }
+
+    // A test case for flattenHours method with large input
+    @Test
+    public void testFlattenHoursLarge() {
+        double hours = 12.30;
+        double expected = 12.5;
+        double actual = HoursUtils.flattenHours(hours);
+        assertEquals(expected, actual, 0.01); // The third argument is the delta for floating point comparison
+    }
 
 }
